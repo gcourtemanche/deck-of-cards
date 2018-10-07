@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { CARD_TYPES } from 'constants.js';
-import { Type } from './styledComponents';
+import { Wrapper, Type, LeftTop, RightBottom } from './styledComponents';
 
-const Card = ({ number, type }) => {
-  const typeIcon = {
-    [CARD_TYPES.DIAMOND]: '♦',
-    [CARD_TYPES.CLUB]: '♣',
-    [CARD_TYPES.HEART]: '♥',
-    [CARD_TYPES.SPADE]: '♠',
-  };
+const typeIcon = {
+  [CARD_TYPES.DIAMOND]: '♦',
+  [CARD_TYPES.CLUB]: '♣',
+  [CARD_TYPES.HEART]: '♥',
+  [CARD_TYPES.SPADE]: '♠',
+};
+
+const NumberType = ({ number, type }) => (
+  <Fragment>
+    {number} <Type type={type}>{typeIcon[type]}</Type>
+  </Fragment>
+);
+
+const Card = props => {
   return (
-    <div>
-      {number} <Type type={type}>{typeIcon[type]}</Type>
-    </div>
+    <Wrapper>
+      <LeftTop>
+        <NumberType {...props} />
+      </LeftTop>
+
+      <RightBottom>
+        <NumberType {...props} />
+      </RightBottom>
+    </Wrapper>
   );
 };
 

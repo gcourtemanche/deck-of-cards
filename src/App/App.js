@@ -30,7 +30,7 @@ class App extends Component {
       <Wrapper>
         <Button onClick={this.shuffle}>Shuffle</Button>
         <Button onClick={this.dealOneCard}>Deal one card</Button>
-        {currentCard ? <Card {...currentCard} /> : <div>Back</div>}
+        {currentCard ? <Card {...currentCard} /> : null}
         <p>{cards.length} remaining cards</p>
       </Wrapper>
     );
