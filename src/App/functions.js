@@ -21,7 +21,7 @@ const getRandomInt = max => {
 };
 
 export const shuffle = cards => {
-  const suffledCards = [];
+  const shuffledCards = [];
   const remainingCards = [...cards];
 
   // Suffle by removing one by one a ramdomly selected card from the remainingCards
@@ -29,12 +29,12 @@ export const shuffle = cards => {
     // Get a random number between 0 and the number of remaining card in the remainingCards stack
     const cardIndex = getRandomInt(remainingCards.length);
 
-    // Put the ramdomly selected card on the top of the suffledCards stack
-    suffledCards.push(remainingCards[cardIndex]);
+    // Put the ramdomly selected card on the top of the shuffledCards stack
+    shuffledCards.push(remainingCards[cardIndex]);
 
     // Remove the ramdomly selected card from the remainingCards stack
     remainingCards.splice(cardIndex, 1);
   }
 
-  return suffledCards;
+  return shuffledCards;
 };
