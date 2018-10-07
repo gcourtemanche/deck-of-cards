@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CARD_TYPES } from 'constants.js';
+import { Type } from './styledComponents';
 
 const Card = ({ number, type }) => {
   const typeIcon = {
@@ -11,7 +12,7 @@ const Card = ({ number, type }) => {
   };
   return (
     <div>
-      {number} {typeIcon[type]}
+      {number} <Type type={type}>{typeIcon[type]}</Type>
     </div>
   );
 };
