@@ -1,4 +1,6 @@
 import * as fns from './functions';
+import { CARD_TYPES } from 'constants.js';
+import { sameCard } from 'utility.js';
 
 describe('initiateDeck function', () => {
   it('returns a 52 cards deck', () => {
@@ -56,5 +58,38 @@ describe('initiateDeck function', () => {
       { number: 12, type: 'SPADE' },
       { number: 13, type: 'SPADE' },
     ]);
+  });
+});
+
+describe('shuffle function', () => {
+  const cards = fns.initiateDeck();
+  const suffledCards = fns.shuffle(cards);
+
+  it('tests that all 52 cards are there', () => {
+    CARD_TYPES.forEach(type => {
+      for (let i = 1; i <= 13; i++) {
+        const find = suffledCards.find(suffledCard => {
+          const card = { number: i, type };
+          return sameCard(card, suffledCard);
+        });
+
+        expect(find).toEqual({ type, number: i });
+      }
+    });
+  });
+
+  // This test could mathematically fails because of the randomness of the function
+  it('tests that the shuffle is effective', () => {
+    let exactCount = 0;
+
+    for (let i = 0; i < 52; i++) {
+      const suffledCard = suffledCards[i];
+      const card = cards[i];
+
+      if (sameCard(suffledCard, card)) {
+        exactCount++;
+      }
+    }
+    expect(exactCount).toBeLessThan(5);
   });
 });
