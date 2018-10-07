@@ -66,7 +66,7 @@ describe('shuffle function', () => {
   const suffledCards = fns.shuffle(cards);
 
   it('tests that all 52 cards are there', () => {
-    CARD_TYPES.forEach(type => {
+    Object.values(CARD_TYPES).forEach(type => {
       for (let i = 1; i <= 13; i++) {
         const find = suffledCards.find(suffledCard => {
           const card = { number: i, type };

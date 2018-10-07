@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as fns from './functions';
 import { Wrapper, Button } from './styledComponents';
+import Card from 'Card/';
 
 class App extends Component {
   state = {
@@ -29,13 +30,7 @@ class App extends Component {
       <Wrapper>
         <Button onClick={this.shuffle}>Shuffle</Button>
         <Button onClick={this.dealOneCard}>Deal one card</Button>
-        {currentCard ? (
-          <div>
-            {currentCard.number} {currentCard.type}
-          </div>
-        ) : (
-          <div>Back</div>
-        )}
+        {currentCard ? <Card {...currentCard} /> : <div>Back</div>}
         <p>{cards.length} remaining cards</p>
       </Wrapper>
     );
