@@ -6,6 +6,7 @@ import { Wrapper, Button } from './styledComponents';
 class App extends Component {
   state = {
     cards: fns.initiateDeck(),
+    currentCard: null,
   };
 
   shuffle = () => {
@@ -13,11 +14,29 @@ class App extends Component {
     this.setState({ cards: suffledCards });
   };
 
+  dealOneCard = () => {
+    const [card, ...remainingCards] = this.state.cards;
+    this.setState({
+      cards: remainingCards,
+      currentCard: card,
+    });
+  };
+
   render() {
+    const { currentCard, cards } = this.state;
+
     return (
       <Wrapper>
         <Button onClick={this.shuffle}>Shuffle</Button>
-        <Button>Deal one card</Button>
+        <Button onClick={this.dealOneCard}>Deal one card</Button>
+        {currentCard ? (
+          <div>
+            {currentCard.number} {currentCard.type}
+          </div>
+        ) : (
+          <div>Back</div>
+        )}
+        <p>{cards.length} remaining cards</p>
       </Wrapper>
     );
   }
